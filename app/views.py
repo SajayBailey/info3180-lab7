@@ -23,14 +23,18 @@ def home():
     return render_template('home.html')
     
 #to get all thumbnails in JSON format
-@app.route('/api/thumbnails', methods = ['GET'])
+@app.route('/api/thumbnails', methods = ['GET', 'POST'])
 def get_thumbnails():
     error = None
     message = 'Success'
-    
-    return jsonify(error = error, message = message, thumbnails = images_only())
-    #out = thumbs
+    thumbnails = images_only()
+    return jsonify(error = error, message = message, thumbnails = thumbnails)
     #return render_template('thumbnails.html', thumbnails = out)
+
+#view thumbnails
+@app.route("/thumbnails/view")
+def view_thumbnails ():
+    return render_template("view_thumbnails.html")
 
 
 ###
