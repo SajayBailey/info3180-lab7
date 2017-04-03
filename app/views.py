@@ -5,11 +5,13 @@ Werkzeug Documentation:  http://werkzeug.pocoo.org/documentation/
 This file creates your application.
 """
 
+import json
 from app import app
 from flask import render_template, request, redirect, url_for, jsonify
 from bs4 import BeautifulSoup
 import requests
 import urlparse
+from image_getter import images_only
 
 ###
 # Routing for your application.
@@ -19,6 +21,16 @@ import urlparse
 def home():
     """Render website's home page."""
     return render_template('home.html')
+    
+#to get all thumbnails in JSON format
+@app.route('/api/thumbnails', methods = ['GET'])
+def get_thumbnails():
+    error = None
+    message = 'Success'
+    
+    return jsonify(error = error, message = message, thumbnails = images_only())
+    #out = thumbs
+    #return render_template('thumbnails.html', thumbnails = out)
 
 
 ###
