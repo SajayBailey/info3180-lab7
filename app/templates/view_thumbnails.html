@@ -5,7 +5,7 @@
 {% raw %}
 
 <div ng-app="view_thumbnails" ng-controller="t_ctrl">
-    <div ng-repeat="thumbnail in view_them" >
+    <div ng-repeat="thumbnail in view_them track by $index" style = "display: inline-block">
         
         <img src="{{ thumbnail }}"/><br>
     </div>
